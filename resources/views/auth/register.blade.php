@@ -5,7 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{{ url('login') }}">{{ __('Login') }}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{{ url('register') }}">{{'Register'}}</a>
+  </li>
+  
+</ul>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
