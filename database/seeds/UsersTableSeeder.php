@@ -12,12 +12,17 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         //
+
+    $ts = DB::raw('CURRENT_TIMESTAMP');
+
      DB::table('users')->insert([
             'name' => 'dmitry',
             'email' => 'dmitry'.'@example.com',
             'password' => bcrypt('secret'),
 			'email_verified_at' => now(),
-        	'remember_token' => Str::random(10),            
+        	'remember_token' => Str::random(10),
+            'created_at' => $ts, 
+            'updated_at' => $ts                               
         ]);
 
        DB::table('users')->insert([
@@ -25,7 +30,9 @@ class UsersTableSeeder extends Seeder
             'email' => 'alex'.'@example.com',
             'password' => bcrypt('secret'),
 			'email_verified_at' => now(),
-        	'remember_token' => Str::random(10),            
+        	'remember_token' => Str::random(10),
+            'created_at' => $ts, 
+            'updated_at' => $ts       
         ]);
         
     }

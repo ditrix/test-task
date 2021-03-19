@@ -13,12 +13,17 @@ class AnketasTableSeeder extends Seeder
     {
         //
        //
+
+        $ts = DB::raw('CURRENT_TIMESTAMP');
+
        DB::table('anketas')->insert([
             'name' => 'Aнкета 1: холодильники',
             'content' => '<data>commig soon...</data>',
             'results_ref' => '#',
             'count_results' => '0',
-        	'user_id' => '1'        
+        	'user_id' => '1',
+            'created_at' => $ts, 
+            'updated_at' => $ts       
         ]);
 
        DB::table('anketas')->insert([
@@ -26,7 +31,9 @@ class AnketasTableSeeder extends Seeder
             'content' => '<data>commig soon...</data>',
             'results_ref' => '#',
             'count_results' => '0',
-        	'user_id' => '2'        
+        	'user_id' => '2',
+            'created_at' => $ts, 
+            'updated_at' => $ts       
         ]);
 
        DB::table('anketas')->insert([
@@ -34,7 +41,9 @@ class AnketasTableSeeder extends Seeder
             'content' => '<data>commig soon...</data>',
             'results_ref' => '#',
             'count_results' => '0',
-        	'user_id' => '1'        
+        	'user_id' => '1',
+            'created_at' => $ts, 
+            'updated_at' => $ts       
         ]);
 
         

@@ -17,15 +17,11 @@ class CreateOrdersTable extends Migration
             $table->id();
 
           $table->unsignedBigInteger('anketa_id')->nullable();
-            $table->text('content');
-            $table->timestamps();
+          $table->foreign('anketa_id')->references('id')->on('anketas')->onDelete('set null');
+          $table->text('content');
+           $table->timestamps();
 
-/*
-            $table->foreign('anketa_id')
-                ->references('id')
-                ->on('anketas')
-                ->nullOnDelete();
-*/
+
         });
     }
 

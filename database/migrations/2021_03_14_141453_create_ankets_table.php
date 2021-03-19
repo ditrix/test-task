@@ -16,7 +16,8 @@ class CreateAnketasTable extends Migration
         Schema::create('anketas', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id')->nullable();
+            
+            $table->unsignedBigInteger('user_id')->nullable(false);
             
             $table->string('name', 100);
 
@@ -26,13 +27,9 @@ class CreateAnketasTable extends Migration
             $table->text('content');
             $table->integer('count_results');
 
-            $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-/*
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->nullOnDelete();*/
+            $table->timestamps();
 
         });
     }
