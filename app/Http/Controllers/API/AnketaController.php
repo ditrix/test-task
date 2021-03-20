@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Anketa;
+
 class AnketaController extends Controller
 {
     /**
@@ -15,6 +17,8 @@ class AnketaController extends Controller
     public function index()
     {
         //
+         $ankets = Anketa::all()->toArray();
+        return array_reverse($ankets);      
     }
 
     /**

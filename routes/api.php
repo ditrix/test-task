@@ -17,5 +17,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResources(['ankets' => 'API\AnketaController']);
-Route::apiResources(['orders' => 'API\OrderController']);
+
+//Route::resource('/admin', 'API\AnketaController@ankets');
+/*
+Route::middleware('api')->group(function () {
+	Route::resource('ankets','API\AnketaController@ankets');
+});
+
+*/
+
+Route::get('/ankets/{user}','API\AnketaController@index');
+
+//Route::middleware('api')->group(function () {
+    //Route::resource('ankets',AnketaController::class);
+    //Route::resource('orders',OrderController::class);
+  //  Route::apiResources(['ankets' => 'API\AnketaController']);
+  //  Route::apiResources(['orders' => 'API\OrderController']);
+//});

@@ -1,0 +1,45 @@
++--------+-----------+--------------------------+---------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                      | Name                | Action                                                                 | Middleware   |
++--------+-----------+--------------------------+---------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                        | home                | App\Http\Controllers\HomeController@index                              | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        | GET|HEAD  | api/ankets               | ankets.index        | App\Http\Controllers\API\AnketaController@index                        | api          |
+|        | POST      | api/ankets               | ankets.store        | App\Http\Controllers\API\AnketaController@store                        | api          |
+|        | GET|HEAD  | api/ankets/{anket}       | ankets.show         | App\Http\Controllers\API\AnketaController@show                         | api          |
+|        | PUT|PATCH | api/ankets/{anket}       | ankets.update       | App\Http\Controllers\API\AnketaController@update                       | api          |
+|        | DELETE    | api/ankets/{anket}       | ankets.destroy      | App\Http\Controllers\API\AnketaController@destroy                      | api          |
+|        | GET|HEAD  | api/ankets/{user}        | ankets.list         | App\Http\Controllers\API\AnketaController@list                         | api          |
+|        | GET|HEAD  | api/orders               | orders.index        | App\Http\Controllers\API\OrderController@index                         | api          |
+|        | POST      | api/orders               | orders.store        | App\Http\Controllers\API\OrderController@store                         | api          |
+|        | GET|HEAD  | api/orders/{order}       | orders.show         | App\Http\Controllers\API\OrderController@show                          | api          |
+|        | PUT|PATCH | api/orders/{order}       | orders.update       | App\Http\Controllers\API\OrderController@update                        | api          |
+|        | DELETE    | api/orders/{order}       | orders.destroy      | App\Http\Controllers\API\OrderController@destroy                       | api          |
+|        | GET|HEAD  | api/user                 |                     | Closure                                                                | api          |
+|        |           |                          |                     |                                                                        | auth:api     |
+|        | POST      | email/resend             | verification.resend | App\Http\Controllers\Auth\VerificationController@resend                | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        |           |                          |                     |                                                                        | throttle:6,1 |
+|        | GET|HEAD  | email/verify             | verification.notice | App\Http\Controllers\Auth\VerificationController@show                  | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        | GET|HEAD  | email/verify/{id}/{hash} | verification.verify | App\Http\Controllers\Auth\VerificationController@verify                | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        |           |                          |                     |                                                                        | signed       |
+|        |           |                          |                     |                                                                        | throttle:6,1 |
+|        | GET|HEAD  | login                    | login               | App\Http\Controllers\Auth\LoginController@showLoginForm                | web          |
+|        |           |                          |                     |                                                                        | guest        |
+|        | POST      | login                    |                     | App\Http\Controllers\Auth\LoginController@login                        | web          |
+|        |           |                          |                     |                                                                        | guest        |
+|        | POST      | logout                   | logout              | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | GET|HEAD  | password/confirm         | password.confirm    | App\Http\Controllers\Auth\ConfirmPasswordController@showConfirmForm    | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        | POST      | password/confirm         |                     | App\Http\Controllers\Auth\ConfirmPasswordController@confirm            | web          |
+|        |           |                          |                     |                                                                        | auth         |
+|        | POST      | password/email           | password.email      | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web          |
+|        | GET|HEAD  | password/reset           | password.request    | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web          |
+|        | POST      | password/reset           | password.update     | App\Http\Controllers\Auth\ResetPasswordController@reset                | web          |
+|        | GET|HEAD  | password/reset/{token}   | password.reset      | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web          |
+|        | GET|HEAD  | register                 | register            | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web          |
+|        |           |                          |                     |                                                                        | guest        |
+|        | POST      | register                 |                     | App\Http\Controllers\Auth\RegisterController@register                  | web          |
+|        |           |                          |                     |                                                                        | guest        |
++--------+-----------+--------------------------+---------------------+------------------------------------------------------------------------+--------------+
