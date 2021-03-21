@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Anketa;
+use App\User;
 
 class AnketaController extends Controller
 {
@@ -20,6 +21,31 @@ class AnketaController extends Controller
          $ankets = Anketa::all()->toArray();
         return array_reverse($ankets);      
     }
+
+
+/**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function admin($userid)
+    {
+        //
+        
+        $user = User::find($userid);
+        if($user !== null){
+            $user_email = $user->email;
+        }else{
+            $user_email = 'not found'; 
+        }
+
+
+        $ankets = Anketa::where(['user_id' => $userid])->get()->toArray();
+        $result =['user_email' => $user_email,'ankets' => array_reverse($ankets)];
+        return $result;      
+
+    }
+
 
     /**
      * Show the form for creating a new resource.

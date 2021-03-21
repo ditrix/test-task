@@ -26,7 +26,8 @@ Route::middleware('api')->group(function () {
 
 */
 
-Route::get('/ankets/{user}','API\AnketaController@index');
+Route::get('/ankets/','API\AnketaController@index');
+Route::get('/admin/{user}','API\AnketaController@admin');
 
 //Route::middleware('api')->group(function () {
     //Route::resource('ankets',AnketaController::class);

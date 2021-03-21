@@ -19,13 +19,20 @@ class CreateAnketasTable extends Migration
             
             $table->unsignedBigInteger('user_id')->nullable(false);
             
+
             $table->string('name', 100);
 
             $table->string('results_ref', 100);
-
-
             $table->text('content');
             $table->integer('count_results');
+
+            $table->string('guestname', 50);
+            $table->string('guestemail', 20);
+            $table->string('guestphone', 20);
+            
+            $table->boolean('send_email');
+
+
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 

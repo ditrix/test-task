@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
        $this->call(AnketasTableSeeder::class);
        
 
-       $this->call(OrdersTableSeeder::class);
+     //  $this->call(OrdersTableSeeder::class);
 
     }
 }
