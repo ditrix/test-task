@@ -33,10 +33,10 @@
                              </td>
                               <td>
                                 <router-link :to='{name:"showOrders",params:{id:anketa.id}}' >
-                                Результаты (5)
+                                Результаты ({{anketa.count_results}})
                                 </router-link>
                             </td>
-                              <td>{{anketa.updated_at}}</td>
+                              <td>{{formatDate(anketa.updated_at)}}</td>
                           </tr>
         
                           
@@ -50,8 +50,10 @@
     </div>
 </template>
 
-<script>
 
+
+<script>
+import moment from 'moment'
 
 // https://www.positronx.io/create-laravel-vue-js-crud-single-page-application/
 
@@ -98,6 +100,13 @@
                     в ином случае скидываем текущий и назначаем новый
 
                 */
+
+            },
+             formatDate(dt){
+
+                return moment(dt).format("DD.MM.YYYY");
+
+    // you dont have to use fromNow() it's just an example
 
             }
         }

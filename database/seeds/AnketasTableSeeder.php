@@ -57,6 +57,15 @@ class AnketasTableSeeder extends Seeder
             ]);
         }
 
+        /*
+         TODO установим anketas.count_result   через 
+        update `anketas` anketa
+set anketa.count_results = (
+select count(*)  from `orders` orders
+where anketa.id = orders.anketa_id
+);
+         https://question-it.com/questions/279495/posev-laravel-cherez-fajl-sql
+         */
 
     }
 }
