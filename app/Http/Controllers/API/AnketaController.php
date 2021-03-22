@@ -28,7 +28,7 @@ class AnketaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function admin($userid)
+    public function user($userid)
     {
         //
         
@@ -111,5 +111,10 @@ class AnketaController extends Controller
     public function destroy($id)
     {
         //
+         $anketa = Anketa::find($id);
+        if ($anketa) {
+            $anketa->delete();
+        }
+        return response()->json(['result'=>'ok']);
     }
 }

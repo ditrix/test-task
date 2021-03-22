@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     //
+    protected $fillable = [
+    	'name',
+		'email',
+        'phone',
+        'content',
+		'anketa_id',
+    ];
 }

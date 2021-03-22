@@ -21,7 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('phone', 20);            
             $table->text('content');
             $table->unsignedBigInteger('anketa_id')->nullable();
-            $table->foreign('anketa_id')->references('id')->on('anketas')->onDelete('set null');
+            $table->foreign('anketa_id')->references('id')->on('anketas')->onDelete('cascade');
             $table->timestamps();
 
 
