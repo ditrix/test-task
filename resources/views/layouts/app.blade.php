@@ -13,8 +13,12 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script>
  --}}
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+{{--     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+ --}}
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />

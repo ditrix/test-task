@@ -1,6 +1,7 @@
 import UserAnketList from './components/UserAnketList.vue';
 import CreateAnketForm from './components/CreateAnketForm.vue';
 import EditAnketForm from './components/EditAnketForm.vue';
+import OrderList from './components/OrderList';
  
 import Example from './components/ExampleComponent.vue';
 
@@ -12,18 +13,23 @@ export const routes = [
     },
     {
         name: 'createAnketa',
-        path: 'api/ankets/create',
+        path: '/ankets/create',
         component: CreateAnketForm
     },
     {
         name: 'editAnketa',
-        path: 'api/ankets/edit/:id',
+        path: '/anket/edit/:id',
         component: EditAnketForm
     },
     {
         name: 'edit',
-        path: 'api/ankets/edit/:id',
+        path: '/anket/edit/:id',
         component: EditAnketForm
+    },
+    {
+        name: 'orderList',
+        path: '/order/:id/anket',
+        component: OrderList
     },    
     
 ];

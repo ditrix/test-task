@@ -5,6 +5,8 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Order;
+
 class OrderController extends Controller
 {
     /**
@@ -81,5 +83,13 @@ class OrderController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function anketa($anketaId){
+
+        $orders = Order::where(['anketa_id' => $anketaId])->get()->toArray();
+        $result = response()->json(['result'=>'ok','orders' => array_reverse($orders)]);
+        return $result;
+
     }
 }

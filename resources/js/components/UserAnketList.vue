@@ -28,9 +28,10 @@
                                <td>{{anketa.name}}</td>
                                <td>
                                  <router-link :to='{name:"editAnketa",params:{id:anketa.id}}' >правка</router-link>
+
                              </td>
                               <td>
-                                <router-link :to='{name:"showOrders",params:{id:anketa.id}}' >
+                                <router-link :to='{name:"orderList",params:{id:anketa.id}}' >
                                 Результаты ({{anketa.count_results}})
                                 </router-link>
                             </td>
@@ -69,7 +70,7 @@ import moment from 'moment'
         methods:{
 
             async getAnkets(){
-                await this.axios.get(`/api/ankets/${uid}`)
+                await this.axios.get(`/api/anket/${uid}/list`)
                     .then(res => {
 //                        console.log(res.data)
                         this.ankets = res.data.ankets
@@ -83,7 +84,7 @@ import moment from 'moment'
             deleteAnketa(){
 
                 if(this.currentRow.anketaId){
-                    this.axios.delete(`/api/ankets/${this.currentRow.anketaId}`)
+                    this.axios.delete(`/api/anket/${this.currentRow.anketaId}/`)
                         .then(res => {
                             this.getAnkets()                    
                         })
