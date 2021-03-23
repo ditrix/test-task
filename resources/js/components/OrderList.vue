@@ -1,6 +1,14 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
+            <nav aria-label="breadcrumb">
+
+<ol class="breadcrumb">
+
+<li class="breadcrumb-item active" aria-current="page"><a href="/">к анкетам</a></li>
+
+</ol>
+</nav>
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header container">
@@ -56,14 +64,14 @@
         },
 
         mounted() {
-            this.getData(this.$route.params.id)
+            this.getData()
 
             console.log('Component mounted. ',this.$route.params.id)
 //            this.getData(this.$route.params.id)
         },
         methods: {
             
-            getData(id){
+            getData(){
   
                this.axios.get(`/api/order/${this.$route.params.id}/anket`)
                     .then(response=> {
@@ -74,20 +82,21 @@
                     .catch(error=>{
                     console.log(error)
                     })
+                this.refreshChecked()
 
             }, 
             deleteRow(){
 
                 if(this.currentRow.id){
-/*                    this.axios.delete(`/api/anket/${this.currentRow.anketaId}/`)
+                    this.axios.delete(`/api/order/${this.currentRow.id}/`)
                         .then(res => {
-                            this.getAnkets()                    
+                            this.getData()                    
                         })
                         .catch(err => {
                             console.log(error)
                         })
-*/              
-                    console.log('delte ',this.currentRow.id)  
+              
+                    console.log('delete ',this.currentRow.id)  
                 }
 
             },
@@ -101,6 +110,10 @@
                 }
         
             },
+
+            refreshChecked(){
+                this.currentRow.id = null; this.currentRow.checked = false;
+            }
 
         }
     }

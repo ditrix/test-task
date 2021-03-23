@@ -83,14 +83,23 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $order = Order::find($id);
+        if ($order) {
+            $order->delete();
+        }
+        return response()->json(['result'=>'ok']);
     }
 
     public function anketa($anketaId){
 
         $anketa = Anketa::where(['id' => $anketaId])->get()->first();
+        $anketa_name = '';
+        if($anketa){
+            $anketa_name = $anketa->name;
+        }
         $orders = Order::where(['anketa_id' => $anketaId])->get()->toArray();
-        $result = response()->json(['result'=>'ok','orders' => array_reverse($orders), 'anketa' => $anketa->name]);
+
+        $result = response()->json(['result'=>'ok','orders' => array_reverse($orders), 'anketa' => $anketa_name]);
         return $result;
 
     }

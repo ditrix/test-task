@@ -2117,6 +2117,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2129,11 +2137,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getData(this.$route.params.id);
+    this.getData();
     console.log('Component mounted. ', this.$route.params.id); //            this.getData(this.$route.params.id)
   },
   methods: {
-    getData: function getData(id) {
+    getData: function getData() {
       var _this = this;
 
       this.axios.get("/api/order/".concat(this.$route.params.id, "/anket")).then(function (response) {
@@ -2143,18 +2151,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+      this.refreshChecked();
     },
     deleteRow: function deleteRow() {
+      var _this2 = this;
+
       if (this.currentRow.id) {
-        /*                    this.axios.delete(`/api/anket/${this.currentRow.anketaId}/`)
-                                .then(res => {
-                                    this.getAnkets()                    
-                                })
-                                .catch(err => {
-                                    console.log(error)
-                                })
-        */
-        console.log('delte ', this.currentRow.id);
+        this.axios["delete"]("/api/order/".concat(this.currentRow.id, "/")).then(function (res) {
+          _this2.getData();
+        })["catch"](function (err) {
+          console.log(error);
+        });
+        console.log('delete ', this.currentRow.id);
       }
     },
     setCurrentRow: function setCurrentRow(id) {
@@ -2165,6 +2173,10 @@ __webpack_require__.r(__webpack_exports__);
         this.currentRow.id = id;
         this.currentRow.checked = true;
       }
+    },
+    refreshChecked: function refreshChecked() {
+      this.currentRow.id = null;
+      this.currentRow.checked = false;
     }
   }
 });
@@ -60476,6 +60488,8 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
+      _vm._m(0),
+      _vm._v(" "),
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header container" }, [
@@ -60522,17 +60536,17 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
-                            "\n                                    ФИО:" +
+                            "\n                                        ФИО:" +
                               _vm._s(order.name)
                           ),
                           _c("br"),
                           _vm._v(
-                            "\n                                    Телефон: " +
+                            "\n                                        Телефон: " +
                               _vm._s(order.phone)
                           ),
                           _c("br"),
                           _vm._v(
-                            "\n                                    Email: " +
+                            "\n                                        Email: " +
                               _vm._s(order.email)
                           ),
                           _c("br")
@@ -60541,9 +60555,9 @@ var render = function() {
                         _c("td", [
                           _c("p", [
                             _vm._v(
-                              "\n                                    " +
+                              "\n                                        " +
                                 _vm._s(order.content) +
-                                "\n                                "
+                                "\n                                    "
                             )
                           ])
                         ])
@@ -60559,7 +60573,25 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("nav", { attrs: { "aria-label": "breadcrumb" } }, [
+      _c("ol", { staticClass: "breadcrumb" }, [
+        _c(
+          "li",
+          {
+            staticClass: "breadcrumb-item active",
+            attrs: { "aria-current": "page" }
+          },
+          [_c("a", { attrs: { href: "/" } }, [_vm._v("к анкетам")])]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

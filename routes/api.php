@@ -34,4 +34,5 @@ Route::get('/order/{user}/user','API\OrderController@user')->name('orders.user')
 Route::get('/order/{anketa}/anket','API\OrderController@anketa')->name('orders.ankets'); // список заказов по анкете
 Route::get('/order/create','API\OrderController@store')->name('orders.create'); // добавить заказ
 Route::post('/order/store','API\OrderController@store')->name('orders.store'); // сохранить заказ
+Route::delete('/order/{order}','API\OrderController@destroy')->name('orders.destroy'); // сохранить заказ
 
