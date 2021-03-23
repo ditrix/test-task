@@ -1,15 +1,15 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <nav aria-label="breadcrumb">
+            <div class="col-md-8">
+                <nav aria-label="breadcrumb">
 
 <ol class="breadcrumb">
 
 <li class="breadcrumb-item active" aria-current="page"><a href="/">к анкетам</a></li>
 
 </ol>
-</nav>
-            <div class="col-md-8">
+</nav>     
                 <div class="card">
                     <div class="card-header container">
                         <div class="row">
@@ -71,9 +71,9 @@
         },
         methods: {
             
-            getData(){
+            async getData(){
   
-               this.axios.get(`/api/order/${this.$route.params.id}/anket`)
+               await this.axios.get(`/api/order/${this.$route.params.id}/anket`)
                     .then(response=> {
                         this.orders = response.data.orders   
                         this.anketa = response.data.anketa

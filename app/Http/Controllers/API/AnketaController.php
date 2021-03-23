@@ -88,6 +88,8 @@ class AnketaController extends Controller
     public function edit($id)
     {
         //
+        $anketa = Anketa::find($id);
+        return response()->json(['result'=>'ok','anketa' => $anketa]);        
     }
 
     /**
@@ -100,6 +102,14 @@ class AnketaController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $anketa = Anketa::find($id);
+
+        if($anketa){
+            $anketa->name = $request->name;
+        }
+        $anketa->save();
+        return response(['result'=>'updated']);
+
     }
 
     /**
