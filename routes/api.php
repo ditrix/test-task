@@ -22,7 +22,8 @@ Route::get('/anket/','API\AnketaController@index')->name('ankets.index');
 // действия "владельца" анкеты
 Route::get('/anket/{user}/list','API\AnketaController@user')->name('ankets.user');  // список анкет пользователя
 Route::get('/anket/{anketa}/edit','API\AnketaController@edit')->name('ankets.edit'); // редактировать анкету
-Route::post('/anket','API\AnketaController@store'); // добавить анкету
+Route::post('/anket','API\AnketaController@store')->name('anket.store'); // добавить анкету
+
 Route::put('/anket/{anketa}','API\AnketaController@update')->name('ankets.update'); // обновить анкету
 Route::delete('/anket/{anketa}','API\AnketaController@destroy')->name('ankets.destroy');  // удалить анкету пользователя
 

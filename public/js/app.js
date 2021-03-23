@@ -2080,7 +2080,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       anketa: {
         name: '',
-        content: ''
+        content: '',
+        send_email: ''
       }
     };
   },
@@ -2116,26 +2117,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     update: function update() {
       var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                _context2.next = 2;
-                return _this2.axios.put("/api/anket/".concat(_this2.$route.params.id), _this2.anketa).then(function (response) {
-                  _this2.anketa = response.data.anketa;
-                  console.log(response.data);
-                })["catch"](function (error) {
-                  return console.log(error);
-                });
+      console.log('update: ', this.anketa);
+      axios.put("/api/anket/".concat(this.$route.params.id), this.anketa).then(function (response) {
+        _this2.$router.push({
+          name: "anketa"
+        });
 
-              case 2:
-              case "end":
-                return _context2.stop();
-            }
-          }
-        }, _callee2);
-      }))();
+        console.log(response.data);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
     }
   }
 });

@@ -99,16 +99,16 @@ class AnketaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id, Request $request)
     {
         //
         $anketa = Anketa::find($id);
+        $anketa->name = $request->name;
+        $anketa->content = $request->content;
+        $anketa->send_email = $request->send_email;
+        $anketa->update();
 
-        if($anketa){
-            $anketa->name = $request->name;
-        }
-        $anketa->save();
-        return response(['result'=>'updated']);
+        return response()->json('anketa updated!');
 
     }
 

@@ -67,6 +67,8 @@
                 anketa: {
                     name: '',
                     content: '',
+                    send_email: '',
+
                 }
             }
         },
@@ -76,7 +78,7 @@
         },
         methods:{
              async showAnketa(){
-               
+                
                 await this.axios.get(`/api/anket/${this.$route.params.id}/edit`)
                     .then( response=> {
                             this.anketa = response.data.anketa
@@ -85,11 +87,14 @@
                     )
                     .catch(error => console.log(error))
             },
-             async update(){
-                await this.axios.put(`/api/anket/${this.$route.params.id}`,this.anketa)
+             update(){
+                console.log('update: ', this.anketa)
+                axios.put(`/api/anket/${this.$route.params.id}`,this.anketa)
                     .then( response=> {
-                            this.anketa = response.data.anketa
-                            console.log(response.data)
+                            
+                        this.$router.push({name:"anketa"})
+                        console.log(response.data)
+
                          }   
                     )
                     .catch(error => console.log(error))
