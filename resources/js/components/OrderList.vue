@@ -3,10 +3,40 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Orders</div>
+                    <div class="card-header container">
+                        <div class="row">
+                        <div class="col-md-10">
+                        <strong>{{anketa}}</strong>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <button type="button" @click="deleteRow()" class="btn btn-danger">удалить</button>
+                        </div>
+                        </div>    
+                    </div>
 
                     <div class="card-body">
-                        todo
+                        <table class="table table-striped">
+                            <tbody  v-if="orders.length > 0">
+
+                              <tr v-for="(order,key) in orders" :key="key">
+                                   <th scope="row"><input type="checkbox" name="" @click="setCurrentRow(order.id)"></th>
+                                   <td>
+                                        ФИО:{{order.name}}<br />
+                                        Телефон: {{order.phone}}<br />
+                                        Email: {{order.email}}<br />
+                                    </td>
+                                   <td>
+                                    <p>
+                                        {{order.content}}
+                                    </p>    
+
+                                 </td>
+                              </tr>
+            
+                          
+                            </tbody>                        
+                        </table>
                     </div>
                 </div>
             </div>
@@ -19,21 +49,14 @@
 
         data(){
             return {
-                name: ''
+                anketa: '',
+                orders: [],
+                currentRow: { id: null, checked: false,},
             }
         },
 
         mounted() {
-
-
-           this.axios.get(`/api/order/${this.$route.params.id}/anket`)
-                .then(response=> {
-                console.log(response)
-                })
-                .catch(error=>{
-                console.log(error)
-                })
-
+            this.getData(this.$route.params.id)
 
             console.log('Component mounted. ',this.$route.params.id)
 //            this.getData(this.$route.params.id)
@@ -41,16 +64,44 @@
         methods: {
             
             getData(id){
-            
-            this.axios.get(`/api/order/${id}/anket`)
-                .then(response=> {
-                console.log(response)
-                })
-                .catch(error=>{
-                console.log(error)
-                })
+  
+               this.axios.get(`/api/order/${this.$route.params.id}/anket`)
+                    .then(response=> {
+                        this.orders = response.data.orders   
+                        this.anketa = response.data.anketa
+                    console.log(this.orders)
+                    })
+                    .catch(error=>{
+                    console.log(error)
+                    })
 
-            }
+            }, 
+            deleteRow(){
+
+                if(this.currentRow.id){
+/*                    this.axios.delete(`/api/anket/${this.currentRow.anketaId}/`)
+                        .then(res => {
+                            this.getAnkets()                    
+                        })
+                        .catch(err => {
+                            console.log(error)
+                        })
+*/              
+                    console.log('delte ',this.currentRow.id)  
+                }
+
+            },
+
+            setCurrentRow(id){
+        
+                if(this.currentRow.checked){
+                    this.currentRow.id = null; this.currentRow.checked = false;
+                }else {
+                    this.currentRow.id = id; this.currentRow.checked = true;
+                }
+        
+            },
+
         }
     }
 

@@ -2087,27 +2087,84 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: ''
+      anketa: '',
+      orders: [],
+      currentRow: {
+        id: null,
+        checked: false
+      }
     };
   },
   mounted: function mounted() {
-    this.axios.get("/api/order/".concat(this.$route.params.id, "/anket")).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    this.getData(this.$route.params.id);
     console.log('Component mounted. ', this.$route.params.id); //            this.getData(this.$route.params.id)
   },
   methods: {
     getData: function getData(id) {
-      this.axios.get("/api/order/".concat(id, "/anket")).then(function (response) {
-        console.log(response);
+      var _this = this;
+
+      this.axios.get("/api/order/".concat(this.$route.params.id, "/anket")).then(function (response) {
+        _this.orders = response.data.orders;
+        _this.anketa = response.data.anketa;
+        console.log(_this.orders);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    deleteRow: function deleteRow() {
+      if (this.currentRow.id) {
+        /*                    this.axios.delete(`/api/anket/${this.currentRow.anketaId}/`)
+                                .then(res => {
+                                    this.getAnkets()                    
+                                })
+                                .catch(err => {
+                                    console.log(error)
+                                })
+        */
+        console.log('delte ', this.currentRow.id);
+      }
+    },
+    setCurrentRow: function setCurrentRow(id) {
+      if (this.currentRow.checked) {
+        this.currentRow.id = null;
+        this.currentRow.checked = false;
+      } else {
+        this.currentRow.id = id;
+        this.currentRow.checked = true;
+      }
     }
   }
 });
@@ -60417,28 +60474,92 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Orders")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    todo\n                ")
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header container" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-10" }, [
+                _c("strong", [_vm._v(_vm._s(_vm.anketa))])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-2" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.deleteRow()
+                      }
+                    }
+                  },
+                  [_vm._v("удалить")]
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c("table", { staticClass: "table table-striped" }, [
+              _vm.orders.length > 0
+                ? _c(
+                    "tbody",
+                    _vm._l(_vm.orders, function(order, key) {
+                      return _c("tr", { key: key }, [
+                        _c("th", { attrs: { scope: "row" } }, [
+                          _c("input", {
+                            attrs: { type: "checkbox", name: "" },
+                            on: {
+                              click: function($event) {
+                                return _vm.setCurrentRow(order.id)
+                              }
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            "\n                                    ФИО:" +
+                              _vm._s(order.name)
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                                    Телефон: " +
+                              _vm._s(order.phone)
+                          ),
+                          _c("br"),
+                          _vm._v(
+                            "\n                                    Email: " +
+                              _vm._s(order.email)
+                          ),
+                          _c("br")
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("p", [
+                            _vm._v(
+                              "\n                                    " +
+                                _vm._s(order.content) +
+                                "\n                                "
+                            )
+                          ])
+                        ])
+                      ])
+                    }),
+                    0
+                  )
+                : _vm._e()
             ])
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

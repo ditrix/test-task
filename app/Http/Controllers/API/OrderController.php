@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Anketa;
 use App\Order;
 
 class OrderController extends Controller
@@ -87,8 +88,9 @@ class OrderController extends Controller
 
     public function anketa($anketaId){
 
+        $anketa = Anketa::where(['id' => $anketaId])->get()->first();
         $orders = Order::where(['anketa_id' => $anketaId])->get()->toArray();
-        $result = response()->json(['result'=>'ok','orders' => array_reverse($orders)]);
+        $result = response()->json(['result'=>'ok','orders' => array_reverse($orders), 'anketa' => $anketa->name]);
         return $result;
 
     }
