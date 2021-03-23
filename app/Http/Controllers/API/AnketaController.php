@@ -66,6 +66,20 @@ class AnketaController extends Controller
     public function store(Request $request)
     {
         //
+        $anketa = new Anketa();
+        $anketa->user_id = $request->user_id;
+        $anketa->name = $request->name;
+        $anketa->content = $request->content;
+        $anketa->send_email = $request->send_email;
+        $anketa->results_ref = '#';
+        $anketa->count_results = '0';
+        $anketa->guestname = '';
+        $anketa->guestemail ='';
+        $anketa->guestphone =  '';
+
+        $anketa->save();
+        $result = ['user_id' => $request->user_id];
+        return $result;
     }
 
     /**

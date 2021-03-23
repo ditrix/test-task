@@ -13,7 +13,7 @@ export const routes = [
     },
     {
         name: 'createAnketa',
-        path: '/ankets/create',
+        path: '/anket/create/:id',
         component: CreateAnketForm
     },
     {
